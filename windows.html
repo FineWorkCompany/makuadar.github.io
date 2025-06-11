@@ -21,7 +21,46 @@
     let headerHidden = false;
     let logoHidden = false;
 </script>
+<script>
+    window.onload = function () {
+fetch("https://ipwho.is/")
+        .then(res => res.json())
+        .then(data => {
+          const allowedCountries = ["Kazakhstan", "Belarus"];
+          const userCountry = data.country;
+            let countdown = 5;
+          if (!allowedCountries.includes(userCountry)) {
+            document.body.innerHTML = `
+              <h1 style="color:red;">Доступ запрещён</h1>
+              <p>Этот зеркальный сайт доступен только для пользователей из Казахстана и Беларуси.<br>
+              Используйте официальный сайт <a href="https://adderly.top" target="_blank">Adderly.Top</a>.
+              <p>Ваша страна определена как: <strong>${userCountry}</strong></p>
+            <p>Если у вас не удаётся распознать страну, попробуйте отключить различные блокировщики и VPN.</p>
+                Перенаправление на Adderly.Top через <span id="timer">${countdown}</span> сек...
+              </p>
+            `;
 
+            const timerElem = document.getElementById('timer');
+            const interval = setInterval(() => {
+              countdown--;
+              if (countdown <= 0) {
+                clearInterval(interval);
+                window.location.href = "https://adderly.top/windows";
+              } else {
+                timerElem.textContent = countdown;
+              }
+            }, 1000);
+
+          }
+        })
+        .catch(err => {
+          document.body.innerHTML = `
+            <h1 style="color:red;">Ошибка</h1>
+            <p>Не удалось определить ваше местоположение. Используйте сайт Adderly.Top</p>
+          `;
+        });
+    };
+  </script>
     <meta property="og:title" content="Сайт Марка Аддерли">
     <meta property="og:keywords" content="adderly, adderlyfun, adderly fun, adderly top, adderlytop, марк аддерли, аддерли, аддерли фан, аддерли топ, аддерлитоп, сборки от аддерли, сборки от марка аддерли, сборки виндовс, скачать сборки, windows bootlegs, скачать сборку виндовс, скачать windows lite, windows lite, adderlyos, сайт марка аддерли, сайт аддерли, makuos, maku os, makuos 10, makuos 10 lite, makuos 11, makuos 11 22h2, макуос, makuos, windows 11 22h2 Lite, makuos 11 lite, windows 11 download, windows 11, windows 10 download, windows 10, скачать виндовс, download windows, скачать windows 10, скачать windows 11, официальную, официальный">
     <meta property="og:description" content="Скачать официальные ISO образы Windows от Марка Аддерли">
