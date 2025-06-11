@@ -14,15 +14,15 @@
     </script>
       <script>
     window.onload = function () {
-      fetch("https://ipapi.co/json/")
+      fetch("http://www.geoplugin.net/json.gp")
         .then(res => res.json())
         .then(data => {
-          if (data.country !== "KZ", "AM", "AZ") {
-            document.body.innerHTML = "<h1>Доступ запрещён</h1><p>Сайт доступен только для пользователей из Казахстана, Азербайджана и Армении.</p>";
+          if (data.country !== "KZ", "BY") {
+            document.body.innerHTML = "<h1>Доступ запрещён</h1><p>Сайт доступен только для пользователей из Казахстана и Беларуси.</p>";
           }
         })
         .catch(err => {
-          document.body.innerHTML = "<h1>Ошибка</h1><p>Не удалось определить ваше местоположение.</p>";
+          document.body.innerHTML = "<h1>Ошибка</h1><p>Не удалось определить ваше местоположение. Выключите блокировку определения местоположения, или используйте сайт Adderly.Top.</p>";
         });
     };
   </script>
