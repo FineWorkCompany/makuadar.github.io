@@ -14,15 +14,25 @@
     </script>
       <script>
     window.onload = function () {
-      fetch("https://ipinfo.io/json")
+      fetch("https://ipinfo.io/json?token=ce4e3b3d26329d")
         .then(res => res.json())
         .then(data => {
-          if (data.country !== "KZ", "BY") {
-            document.body.innerHTML = "<h1>Доступ запрещён</h1><p>Сайт доступен только для пользователей из Казахстана и Беларуси.</p>";
+          const allowedCountries = ["KZ", "BY"];
+          const userCountry = data.country;
+
+          if (!allowedCountries.includes(userCountry)) {
+            document.body.innerHTML = `
+              <h1 style="color:red;">Доступ запрещён</h1>
+              <p>Этот сайт доступен только для пользователей из Казахстана и Беларуси. Используйте сайт Adderly.Top</p>
+              <p>Ваша страна определена как: <strong>${userCountry}</strong></p>
+            `;
           }
         })
         .catch(err => {
-          document.body.innerHTML = "<h1>Ошибка</h1><p>Не удалось определить ваше местоположение. Выключите блокировку определения местоположения, или используйте сайт Adderly.Top.</p>";
+          document.body.innerHTML = `
+            <h1 style="color:red;">Ошибка</h1>
+            <p>Не удалось определить ваше местоположение. Используйте сайт Adderly.Top</p>
+          `;
         });
     };
   </script>
