@@ -12,6 +12,20 @@
 
         gtag('config', 'G-68MY39SKZ9');
     </script>
+      <script>
+    window.onload = function () {
+      fetch("https://ipapi.co/json/")
+        .then(res => res.json())
+        .then(data => {
+          if (data.country !== "KZ", "AM", "AZ") {
+            document.body.innerHTML = "<h1>Доступ запрещён</h1><p>Сайт доступен только для пользователей из Казахстана, Азербайджана и Армении.</p>";
+          }
+        })
+        .catch(err => {
+          document.body.innerHTML = "<h1>Ошибка</h1><p>Не удалось определить ваше местоположение.</p>";
+        });
+    };
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:image" content="https://markadderly.ru/images/favicon.png">
