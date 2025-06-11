@@ -23,7 +23,8 @@ fetch("https://ipwho.is/")
           if (!allowedCountries.includes(userCountry)) {
             document.body.innerHTML = `
               <h1 style="color:red;">Доступ запрещён</h1>
-              <p>Этот сайт доступен только для пользователей из Казахстана и Беларуси. Используйте сайт Adderly.Top</p>
+              <p>Этот зеркальный сайт доступен только для пользователей из Казахстана и Беларуси.<br>
+              Используйте официальный сайт <a href="https://adderly.top" target="_blank">Adderly.Top</a>.
               <p>Ваша страна определена как: <strong>${userCountry}</strong></p>
             `;
           }
