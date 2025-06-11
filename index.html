@@ -17,7 +17,7 @@
 fetch("https://ipwho.is/")
         .then(res => res.json())
         .then(data => {
-          const allowedCountries = ["KZ", "BY"];
+          const allowedCountries = ["Kazakhstan", "Belarus"];
           const userCountry = data.country;
 
           if (!allowedCountries.includes(userCountry)) {
