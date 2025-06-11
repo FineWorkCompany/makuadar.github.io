@@ -21,7 +21,46 @@
     let headerHidden = false;
     let logoHidden = false;
 </script>
+<script>
+    window.onload = function () {
+fetch("https://ipwho.is/")
+        .then(res => res.json())
+        .then(data => {
+          const allowedCountries = ["Kazakhstan", "Belarus"];
+          const userCountry = data.country;
+            let countdown = 5;
+          if (!allowedCountries.includes(userCountry)) {
+            document.body.innerHTML = `
+              <h1 style="color:red;">Доступ запрещён</h1>
+              <p>Этот зеркальный сайт доступен только для пользователей из Казахстана и Беларуси.<br>
+              Используйте официальный сайт <a href="https://adderly.top" target="_blank">Adderly.Top</a>.
+              <p>Ваша страна определена как: <strong>${userCountry}</strong></p>
+            <p>Если у вас не удаётся распознать страну, попробуйте отключить различные блокировщики и VPN.</p>
+                Перенаправление на Adderly.Top через <span id="timer">${countdown}</span> сек...
+              </p>
+            `;
 
+            const timerElem = document.getElementById('timer');
+            const interval = setInterval(() => {
+              countdown--;
+              if (countdown <= 0) {
+                clearInterval(interval);
+                window.location.href = "https://adderly.top/win_pe";
+              } else {
+                timerElem.textContent = countdown;
+              }
+            }, 1000);
+
+          }
+        })
+        .catch(err => {
+          document.body.innerHTML = `
+            <h1 style="color:red;">Ошибка</h1>
+            <p>Не удалось определить ваше местоположение. Используйте сайт Adderly.Top</p>
+          `;
+        });
+    };
+  </script>
     <meta property="og:title" content="Скачать Windows PE от Марка Аддерли">
     <meta property="og:keywords" content="adderly, adderlyfun, adderlytop, adderly fun, марк аддерли, аддерли, аддерли фан, аддерли топ, аддерлитоп, сборки от аддерли, makutweaker, makutyper, makuadarii, Windows PE, Windows PE от Марка Аддерли, от марка аддерли, винпе скачать, виндовс пе, винпе, winpe, WinPE, MakuPE, макупе">
     <meta property="og:description" content="Скачать Windows PE от Марка Аддерли">
