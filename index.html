@@ -19,7 +19,7 @@ fetch("https://ipwho.is/")
         .then(data => {
           const allowedCountries = ["Kazakhstan", "Belarus"];
           const userCountry = data.country;
-
+            let countdown = 5;
           if (!allowedCountries.includes(userCountry)) {
             document.body.innerHTML = `
               <h1 style="color:red;">Доступ запрещён</h1>
