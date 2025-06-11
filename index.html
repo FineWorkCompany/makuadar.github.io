@@ -14,7 +14,7 @@
     </script>
       <script>
     window.onload = function () {
-      fetch("http://www.geoplugin.net/json.gp")
+      fetch("https://ipinfo.io/json")
         .then(res => res.json())
         .then(data => {
           if (data.country !== "KZ", "BY") {
