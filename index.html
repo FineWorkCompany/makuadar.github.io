@@ -27,7 +27,21 @@ fetch("https://ipwho.is/")
               Используйте официальный сайт <a href="https://adderly.top" target="_blank">Adderly.Top</a>.
               <p>Ваша страна определена как: <strong>${userCountry}</strong></p>
             <p>Если у вас не удаётся распознать страну, попробуйте отключить различные блокировщики и VPN.</p>
+                Перенаправление на Adderly.Top через <span id="timer">${countdown}</span> сек...
+              </p>
             `;
+
+            const timerElem = document.getElementById('timer');
+            const interval = setInterval(() => {
+              countdown--;
+              if (countdown <= 0) {
+                clearInterval(interval);
+                window.location.href = "https://adderly.top";
+              } else {
+                timerElem.textContent = countdown;
+              }
+            }, 1000);
+
           }
         })
         .catch(err => {
